@@ -141,10 +141,7 @@ public class WheelView extends View {
             textSize = a.getDimensionPixelOffset(R.styleable.pickerview_pickerview_textSize, textSize);
             lineSpacingMultiplier = a.getFloat(R.styleable.pickerview_pickerview_lineSpacingMultiplier, lineSpacingMultiplier);
             is3D = a.getBoolean(R.styleable.pickerview_pickerview_is3D, false);
-            itemsVisible = a.getInteger(R.styleable.pickerview_pickerview_visibleCount, 5);
-            if (is3D) {
-                itemsVisible += 2;
-            }
+            itemsVisible = a.getInteger(R.styleable.pickerview_pickerview_visibleCount, 5) + 2;
             a.recycle();//回收内存
         }
 
@@ -238,7 +235,7 @@ public class WheelView extends View {
             //整个圆的周长除以PI得到直径，这个直径用作控件的总高度
             measuredHeight = (int) ((halfCircumference * 2) / Math.PI);
         } else {
-            measuredHeight = (int) (itemHeight * itemsVisible);
+            measuredHeight = (int) (itemHeight * (itemsVisible - 2));
         }
         //求出半径
         radius = (int) (halfCircumference / Math.PI);
@@ -484,7 +481,7 @@ public class WheelView extends View {
                 if (is3D) {
                     translateY = (float) (radius - Math.cos(radian) * radius - (Math.sin(radian) * maxTextHeight) / 2D);
                 } else {
-                    translateY = counter * itemHeight - itemHeightOffset + itemHeight / lineSpacingMultiplier * (lineSpacingMultiplier - 1) / 2;
+                    translateY = (counter - 1) * itemHeight - itemHeightOffset + itemHeight / lineSpacingMultiplier * (lineSpacingMultiplier - 1) / 2;
                 }
                 //根据Math.sin(radian)来更改canvas坐标系原点，然后缩放画布，使得文字高度进行缩放，形成弧形3d视觉差
                 canvas.translate(0.0F, translateY);
