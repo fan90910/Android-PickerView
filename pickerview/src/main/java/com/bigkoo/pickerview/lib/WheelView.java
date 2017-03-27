@@ -140,7 +140,7 @@ public class WheelView extends View {
             dividerColor = a.getColor(R.styleable.pickerview_pickerview_dividerColor, dividerColor);
             textSize = a.getDimensionPixelOffset(R.styleable.pickerview_pickerview_textSize, textSize);
             lineSpacingMultiplier = a.getFloat(R.styleable.pickerview_pickerview_lineSpacingMultiplier, lineSpacingMultiplier);
-            is3D = a.getBoolean(R.styleable.pickerview_pickerview_is3D, false);
+            is3D = a.getBoolean(R.styleable.pickerview_pickerview_is3D, true);
             itemsVisible = a.getInteger(R.styleable.pickerview_pickerview_visibleCount, 5) + 2;
             a.recycle();//回收内存
         }
