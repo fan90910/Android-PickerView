@@ -13,5 +13,6 @@
         <attr name="pickerview_lineSpacingMultiplier" format="float"/>
         <attr name="pickerview_is3D" format="boolean"/>
         <attr name="pickerview_visibleCount" format="integer"/>
+        <attr name="pickerview_centerTextScale" format="float"/>
     </declare-styleable>
 </resources>

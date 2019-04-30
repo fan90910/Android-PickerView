@@ -79,6 +79,7 @@ public class WheelView extends View {
     float lineSpacingMultiplier = 1.6F;
     boolean isLoop;
     private boolean is3D;
+    private float centerTextScale = 1.1f;
 
     // 第一条线Y坐标值
     float firstLineY;
@@ -141,6 +142,7 @@ public class WheelView extends View {
             textSize = a.getDimensionPixelOffset(R.styleable.pickerview_pickerview_textSize, textSize);
             lineSpacingMultiplier = a.getFloat(R.styleable.pickerview_pickerview_lineSpacingMultiplier, lineSpacingMultiplier);
             is3D = a.getBoolean(R.styleable.pickerview_pickerview_is3D, true);
+            centerTextScale = a.getFloat(R.styleable.pickerview_pickerview_centerTextScale, 1.1f);
             itemsVisible = a.getInteger(R.styleable.pickerview_pickerview_visibleCount, 5) + 2;
             a.recycle();//回收内存
         }
@@ -208,7 +210,7 @@ public class WheelView extends View {
         paintCenterText = new Paint();
         paintCenterText.setColor(textColorCenter);
         paintCenterText.setAntiAlias(true);
-        paintCenterText.setTextScaleX(1.1F);
+        paintCenterText.setTextScaleX(centerTextScale);
         paintCenterText.setTypeface(typeface);
         paintCenterText.setTextSize(textSize);
 

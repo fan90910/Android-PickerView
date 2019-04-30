@@ -24,6 +24,8 @@ public class WheelOptions<T> {
     private boolean linkage;
     private OnItemSelectedListener wheelListener_option1;
     private OnItemSelectedListener wheelListener_option2;
+    private OnItemSelectedListener customOption1;
+    private OnItemSelectedListener customOption2;
 
     //文字的颜色和分割线的颜色
     int textColorOut;
@@ -52,6 +54,25 @@ public class WheelOptions<T> {
         wv_option3 = (WheelView) view.findViewById(R.id.options3);
     }
 
+    public WheelView getWv_option1() {
+        return wv_option1;
+    }
+
+    public WheelView getWv_option2() {
+        return wv_option2;
+    }
+
+    public WheelView getWv_option3() {
+        return wv_option3;
+    }
+
+    public void setCustomOption1(OnItemSelectedListener customOption1) {
+        this.customOption1 = customOption1;
+    }
+
+    public void setCustomOption2(OnItemSelectedListener customOption2) {
+        this.customOption2 = customOption2;
+    }
 
     public void setPicker(List<T> options1Items,
                           List<List<T>> options2Items,
@@ -88,7 +109,10 @@ public class WheelOptions<T> {
         wheelListener_option1 = new OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(int index) {
+            public boolean onItemSelected(int index) {
+                if (customOption1 != null && customOption1.onItemSelected(index)) {
+                    return true;
+                }
                 int opt2Select = 0;
                 if (mOptions2Items != null) {
                     opt2Select = wv_option2.getCurrentItem();//上一个opt2的选中位置
@@ -102,12 +126,16 @@ public class WheelOptions<T> {
                 if (mOptions3Items != null) {
                     wheelListener_option2.onItemSelected(opt2Select);
                 }
+                return true;
             }
         };
         wheelListener_option2 = new OnItemSelectedListener() {
 
             @Override
-            public void onItemSelected(int index) {
+            public boolean onItemSelected(int index) {
+                if (customOption2 != null && customOption2.onItemSelected(index)) {
+                    return true;
+                }
                 if (mOptions3Items != null) {
                     int opt1Select = wv_option1.getCurrentItem();
                     opt1Select = opt1Select >= mOptions3Items.size() - 1 ? mOptions3Items.size() - 1 : opt1Select;
@@ -122,6 +150,7 @@ public class WheelOptions<T> {
                     wv_option3.setCurrentItem(opt3);
 
                 }
+                return true;
             }
         };
 

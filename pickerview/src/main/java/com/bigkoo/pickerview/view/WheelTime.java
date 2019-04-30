@@ -232,7 +232,7 @@ public class WheelTime {
         // 添加"年"监听
         OnItemSelectedListener wheelListener_year = new OnItemSelectedListener() {
             @Override
-            public void onItemSelected(int index) {
+            public boolean onItemSelected(int index) {
                 int year_num = index + startYear;
                 currentYear = year_num;
                 int currentMonthItem = wv_month.getCurrentItem();//记录上一次的item位置
@@ -303,12 +303,13 @@ public class WheelTime {
 
                 }
 
+                return true;
             }
         };
         // 添加"月"监听
         OnItemSelectedListener wheelListener_month = new OnItemSelectedListener() {
             @Override
-            public void onItemSelected(int index) {
+            public boolean onItemSelected(int index) {
                 int month_num = index + 1;
 
                 if (startYear == endYear) {
@@ -349,6 +350,7 @@ public class WheelTime {
 
                 }
 
+                return true;
 
             }
         };

@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class OptionsPickerView<T> extends BasePickerView implements View.OnClickListener {
 
-    WheelOptions<T> wheelOptions;
+    private WheelOptions<T> wheelOptions;
     private int layoutRes;
     private CustomListener customListener;
     private Button btnSubmit, btnCancel; //确定、取消按钮
@@ -417,6 +417,9 @@ public class OptionsPickerView<T> extends BasePickerView implements View.OnClick
 
     }
 
+    public WheelOptions<T> getWheelOptions() {
+        return wheelOptions;
+    }
 
     /**
      * 设置默认选中项
