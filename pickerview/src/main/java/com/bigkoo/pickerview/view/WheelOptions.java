@@ -24,8 +24,10 @@ public class WheelOptions<T> {
     private boolean linkage;
     private OnItemSelectedListener wheelListener_option1;
     private OnItemSelectedListener wheelListener_option2;
+    private OnItemSelectedListener wheelListener_option3;
     private OnItemSelectedListener customOption1;
     private OnItemSelectedListener customOption2;
+    private OnItemSelectedListener customOption3;
 
     //文字的颜色和分割线的颜色
     int textColorOut;
@@ -72,6 +74,10 @@ public class WheelOptions<T> {
 
     public void setCustomOption2(OnItemSelectedListener customOption2) {
         this.customOption2 = customOption2;
+    }
+
+    public void setCustomOption3(OnItemSelectedListener customOption3) {
+        this.customOption3 = customOption3;
     }
 
     public void setPicker(List<T> options1Items,
@@ -153,12 +159,24 @@ public class WheelOptions<T> {
                 return true;
             }
         };
+        wheelListener_option3 = new OnItemSelectedListener() {
+
+            @Override
+            public boolean onItemSelected(int index) {
+                if (customOption3 != null && customOption3.onItemSelected(index)) {
+                    return true;
+                }
+                return true;
+            }
+        };
 
 		// 添加联动监听
-        if (options2Items != null && linkage)
+        if (linkage)
             wv_option1.setOnItemSelectedListener(wheelListener_option1);
-        if (options3Items != null && linkage)
+        if (linkage)
             wv_option2.setOnItemSelectedListener(wheelListener_option2);
+        if (linkage)
+            wv_option3.setOnItemSelectedListener(wheelListener_option3);
     }
 
 
@@ -193,6 +211,46 @@ public class WheelOptions<T> {
             wv_option2.setVisibility(View.GONE);
         if (this.N_mOptions3Items == null)
             wv_option3.setVisibility(View.GONE);
+
+
+        wheelListener_option1 = new OnItemSelectedListener() {
+
+            @Override
+            public boolean onItemSelected(int index) {
+                if (customOption1 != null && customOption1.onItemSelected(index)) {
+                    return true;
+                }
+                return true;
+            }
+        };
+        wheelListener_option2 = new OnItemSelectedListener() {
+
+            @Override
+            public boolean onItemSelected(int index) {
+                if (customOption2 != null && customOption2.onItemSelected(index)) {
+                    return true;
+                }
+                return true;
+            }
+        };
+        wheelListener_option3 = new OnItemSelectedListener() {
+
+            @Override
+            public boolean onItemSelected(int index) {
+                if (customOption3 != null && customOption3.onItemSelected(index)) {
+                    return true;
+                }
+                return true;
+            }
+        };
+
+        // 添加联动监听
+        if (linkage)
+            wv_option1.setOnItemSelectedListener(wheelListener_option1);
+        if (linkage)
+            wv_option2.setOnItemSelectedListener(wheelListener_option2);
+        if (linkage)
+            wv_option3.setOnItemSelectedListener(wheelListener_option3);
     }
 
 
